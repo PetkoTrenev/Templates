@@ -1,0 +1,17 @@
+@Mapper(componentModel = "spring")
+public interface GroupMapper {
+
+    GroupDTO groupToGroupDTO(Group group);
+}
+
+@Mapper(componentModel = "spring")
+public interface SkillMapper {
+
+    SkillDTO skillToSkillDTO(Skill skill);
+}
+
+@Mapper(componentModel = "spring", uses = {SkillMapper.class, GroupMapper.class})
+public interface EmployeeGroupMapper {
+    // this is going to use the mapper that are injected inside of it to handle each entity to dto conversion
+    List<EmployeeGroupDTO> employeeGroupsToEmployeeGroupDTOs(List<EmployeeGroup> employeeGroups);
+}
