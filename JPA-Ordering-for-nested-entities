@@ -1,0 +1,20 @@
+
+@Entity
+@Data
+@Builder
+@Table(name = "employee")
+public class Employee {
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="employee_id")
+    @OrderColumn                                  // apply order ot the list of employee groups
+    private List<EmployeeGroup> employeeGroups;
+}
+
+@Entity
+@Data
+public class EmployeeGroup {
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @OrderColumn                                // it is going to be used for ordering skills within a particular employee group
+    List<Skill> skills;
+}
